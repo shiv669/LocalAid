@@ -1,0 +1,10 @@
+{
+  "projectId": "",
+  "settings": {
+    "services": {
+      "storage": {
+        "buckets": []
+      }
+    }
+  }
+}

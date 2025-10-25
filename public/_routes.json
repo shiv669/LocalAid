@@ -1,8 +1,21 @@
 ﻿{
+  "version": 2,
   "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "^/_next/(.*)$",
+      "dest": "/_next/$1"
+    },
+    {
+      "src": "^/(.*)\\.(css|js|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot)$",
+      "dest": "/$1.$2"
+    },
+    {
+      "src": "^/verify$",
+      "dest": "/verify.html"
+    },
+    {
+      "src": "^/(.*)$",
+      "dest": "/index.html"
     }
   ]
 }
