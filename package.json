@@ -7,7 +7,8 @@
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
-    "check-env": "node scripts/check-env.js"
+    "check-env": "node scripts/check-env.js",
+    "export": "next build --webpack && echo 'Static export complete. Deploy the out/ folder.'"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.9",

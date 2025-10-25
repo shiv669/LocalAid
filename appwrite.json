@@ -1,10 +1,4 @@
 {
   "projectId": "",
-  "settings": {
-    "services": {
-      "storage": {
-        "buckets": []
-      }
-    }
-  }
+  "projectName": "LocalAid Connect"
 }

@@ -1,0 +1,9 @@
+{
+  "outputDirectory": "out",
+  "installCommand": "npm install",
+  "buildCommand": "npm run build",
+  "rootDirectory": "./",
+  "environment": {
+    "NODE_VERSION": "18"
+  }
+}
