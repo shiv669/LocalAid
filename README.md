@@ -1,4 +1,4 @@
-﻿# LocalAid Connect 
+# LocalAid Connect 
 
 [![Appwrite Hacktoberfest 2025](https://img.shields.io/badge/Appwrite-Hacktoberfest%202025-FD366E)](https://apwr.dev/hf2025-hackathon)
 [![Next.js](https://img.shields.io/badge/Next.js-16.0-black)](https://nextjs.org/)
