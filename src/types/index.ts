@@ -10,8 +10,8 @@ export type EmergencyRequest = {
     };
     status: 'PENDING' | 'MATCHED' | 'COMPLETED';
     priority: 'HIGH' | 'MEDIUM' | 'LOW';
-    createdAt: string;  // Appwrite's $createdAt
-    updatedAt: string;  // Appwrite's $updatedAt
+    createdAt: string;
+    updatedAt: string;
 };
 
 export type Resource = {
@@ -25,16 +25,16 @@ export type Resource = {
         address: string;
     };
     availability: boolean;
-    createdAt: string;  // Appwrite's $createdAt
-    updatedAt: string;  // Appwrite's $updatedAt
+    createdAt: string;
+    updatedAt: string;
 };
 
 export type UserProfile = {
     id: string;
-    phone: string;  // Can store phone or a placeholder like "N/A" for email users
+    phone: string;
     name: string;
     isVerified: boolean;
     role: 'HELPER' | 'SEEKER' | 'ADMIN';
-    createdAt: string;  // Appwrite's $createdAt
-    updatedAt: string;  // Appwrite's $updatedAt
+    createdAt: string;
+    updatedAt: string;
 };

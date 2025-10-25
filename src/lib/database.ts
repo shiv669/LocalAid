@@ -19,10 +19,8 @@ export const DatabaseService = {
             ID.unique(),
             {
                 ...request,
-                location: typeof request.location === 'string' 
-                    ? request.location 
-                    : JSON.stringify(request.location), // Convert object to string
-                // Don't set createdAt/updatedAt - Appwrite handles this automatically
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString()
             }
         );
     },
@@ -32,14 +30,7 @@ export const DatabaseService = {
             DATABASE_ID,
             Collections.Requests
         );
-        // Parse location strings back to objects and map $id to id
-        return response.documents.map(doc => ({
-            ...doc,
-            id: doc.$id,
-            location: typeof doc.location === 'string' ? JSON.parse(doc.location) : doc.location,
-            createdAt: doc.$createdAt,
-            updatedAt: doc.$updatedAt
-        })) as unknown as EmergencyRequest[];
+        return response.documents as unknown as EmergencyRequest[];
     },
 
     // Resources
@@ -50,10 +41,8 @@ export const DatabaseService = {
             ID.unique(),
             {
                 ...resource,
-                location: typeof resource.location === 'string'
-                    ? resource.location
-                    : JSON.stringify(resource.location), // Convert object to string
-                // Appwrite auto-generates timestamps
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString()
             }
         );
     },
@@ -63,25 +52,19 @@ export const DatabaseService = {
             DATABASE_ID,
             Collections.Resources
         );
-        // Parse location strings back to objects and map $id to id
-        return response.documents.map(doc => ({
-            ...doc,
-            id: doc.$id,
-            location: typeof doc.location === 'string' ? JSON.parse(doc.location) : doc.location,
-            createdAt: doc.$createdAt,
-            updatedAt: doc.$updatedAt
-        })) as unknown as Resource[];
+        return response.documents as unknown as Resource[];
     },
 
     // User Profiles
-    async createUserProfile(userId: string, profile: Omit<UserProfile, 'id' | 'createdAt' | 'updatedAt'>) {
+    async createUserProfile(profile: Omit<UserProfile, 'id' | 'createdAt' | 'updatedAt'>) {
         return await databases.createDocument(
             DATABASE_ID,
             Collections.Users,
-            userId, // Use the auth user's ID as the document ID
+            ID.unique(),
             {
                 ...profile,
-                // Appwrite auto-generates timestamps
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString()
             }
         );
     },
@@ -93,13 +76,7 @@ export const DatabaseService = {
                 Collections.Users,
                 userId
             );
-            // Map Appwrite fields to our type
-            return {
-                ...response,
-                id: response.$id,
-                createdAt: response.$createdAt,
-                updatedAt: response.$updatedAt
-            } as unknown as UserProfile;
+            return response as unknown as UserProfile;
         } catch {
             return null;
         }
@@ -107,8 +84,7 @@ export const DatabaseService = {
 
     // Matching System
     async createMatch(requestId: string, resourceId: string) {
-        // Create the match document
-        const match = await databases.createDocument(
+        return await databases.createDocument(
             DATABASE_ID,
             Collections.Matches,
             ID.unique(),
@@ -116,30 +92,8 @@ export const DatabaseService = {
                 requestId,
                 resourceId,
                 status: 'PENDING',
-                // Appwrite auto-generates timestamps
-            }
-        );
-
-        // Update the request status to MATCHED
-        await databases.updateDocument(
-            DATABASE_ID,
-            Collections.Requests,
-            requestId,
-            {
-                status: 'MATCHED'
-            }
-        );
-
-        return match;
-    },
-
-    async updateRequestStatus(requestId: string, status: 'PENDING' | 'MATCHED' | 'COMPLETED') {
-        return await databases.updateDocument(
-            DATABASE_ID,
-            Collections.Requests,
-            requestId,
-            {
-                status
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString()
             }
         );
     }

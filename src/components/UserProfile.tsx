@@ -70,15 +70,12 @@ export default function UserProfileComponent() {
         phoneValue = phoneValue.substring(0, 20);
       }
       
-      const newProfile = await DatabaseService.createUserProfile(
-        user.$id,
-        {
+      const newProfile = await DatabaseService.createUserProfile({
           phone: phoneValue,
           name: formData.name,
           isVerified: false,
           role: formData.role,
-        }
-      );
+        });
 
       setProfile(newProfile as unknown as UserProfile);
       setIsEditing(false);
@@ -249,3 +246,4 @@ export default function UserProfileComponent() {
     </GlassCard>
   );
 }
+
