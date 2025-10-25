@@ -5,11 +5,7 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  // Optimized for Appwrite static hosting
-  distDir: 'out',
-  basePath: '',
-  assetPrefix: '',
-  trailingSlash: false,
+  trailingSlash: true,
 };
 
 export default nextConfig;
