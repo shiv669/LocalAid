@@ -1,4 +1,10 @@
 {
-  "projectId": "",
-  "projectName": "LocalAid Connect"
+  "projectId": "68fcedbf001c29286f39",
+  "projectName": "LocalAid Connect",
+  "settings": {
+    "outputDirectory": "out",
+    "rootDirectory": ".",
+    "buildCommand": "npm run build",
+    "installCommand": "npm install"
+  }
 }
