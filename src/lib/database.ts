@@ -30,7 +30,10 @@ export const DatabaseService = {
             DATABASE_ID,
             Collections.Requests
         );
-        return response.documents as unknown as EmergencyRequest[];
+        return response.documents.map(doc => ({
+            ...doc,
+            id: doc.$id,
+        })) as unknown as EmergencyRequest[];
     },
 
     // Resources
@@ -52,7 +55,10 @@ export const DatabaseService = {
             DATABASE_ID,
             Collections.Resources
         );
-        return response.documents as unknown as Resource[];
+        return response.documents.map(doc => ({
+            ...doc,
+            id: doc.$id,
+        })) as unknown as Resource[];
     },
 
     // User Profiles
@@ -76,7 +82,10 @@ export const DatabaseService = {
                 Collections.Users,
                 userId
             );
-            return response as unknown as UserProfile;
+            return {
+                ...response,
+                id: response.$id,
+            } as unknown as UserProfile;
         } catch {
             return null;
         }
