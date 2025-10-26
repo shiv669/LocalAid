@@ -1,21 +1,5 @@
 ﻿{
-  "version": 2,
-  "routes": [
-    {
-      "src": "^/_next/(.*)$",
-      "dest": "/_next/$1"
-    },
-    {
-      "src": "^/(.*)\\.(css|js|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot)$",
-      "dest": "/$1.$2"
-    },
-    {
-      "src": "^/verify$",
-      "dest": "/verify.html"
-    },
-    {
-      "src": "^/(.*)$",
-      "dest": "/index.html"
-    }
-  ]
+  "version": 1,
+  "include": ["/*"],
+  "exclude": []
 }
