@@ -1,5 +1,5 @@
 ﻿{
   "version": 1,
-  "include": ["/*"],
-  "exclude": []
+  "index": "index.html",
+  "error404": "404.html"
 }
